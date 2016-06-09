@@ -2,31 +2,11 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import CourseList from './CourseList';
 
 class CoursesPage extends React.Component {
 	constructor(props, context) {
 		super(props, context);
-
-		this.state = {
-			course: {title: ''}
-		};
-		/*
-		* Do binds in the constructor and not
-		* in the render mapDispatchToProps function
-		* it's better for performance.
-		*/
-		this.onTitleChange = this.onTitleChange.bind(this);
-		this.onClickSave   = this.onClickSave.bind(this);
-	}
-
-	onTitleChange(e) {
-		const course = this.state.course;
-		course.title = e.target.value;
-		this.setState({course: course});
-	}
-
-	onClickSave() {
-		this.props.actions.createCourse(this.state.course);
 	}
 
 	courseRow(course, index) {
@@ -35,19 +15,12 @@ class CoursesPage extends React.Component {
 
 	render() {
 		//debugger;
+		const {courses} = this.props;
+
 		return (
 			<div className='container top'>
 				<h1>Courses</h1>
-				{this.props.courses.map(this.courseRow)}
-				<h2>Add Course</h2>
-				<input
-					type='text'
-					onChange={this.onTitleChange}
-					value={this.state.course.title} />
-				<input
-					type='submit'
-					value='save'
-					onClick={this.onClickSave} />
+				<CourseList courses={courses} />
 			</div>
 		);
 	}
