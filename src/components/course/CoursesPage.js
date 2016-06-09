@@ -58,6 +58,7 @@ CoursesPage.propTypes = {
 	actions: PropTypes.object.isRequired
 };
 
+// React-Redux connection
 function mapStateToProps (state, ownProps) {
 	//debugger;
 	return {
