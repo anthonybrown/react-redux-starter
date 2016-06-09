@@ -1,4 +1,4 @@
-import * as from '../actions/actionTypes';
+import * as types from '../actions/actionTypes';
 
 export default function courseReducer (state = [], action) {
 	switch (action.type) {
