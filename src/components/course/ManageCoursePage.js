@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React, {PropTypes}   from 'react';
+import {connect}            from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as courseActions from '../../actions/courseActions';
-import CourseForm from './CourseForm';
+import * as courseActions   from '../../actions/courseActions';
+import CourseForm           from './CourseForm';
 
 class ManageCoursePage extends React.Component {
 	constructor(props, context) {
@@ -12,6 +12,22 @@ class ManageCoursePage extends React.Component {
 			course: Object.assign({}, this.props.course),
 			errors: {}
 		};
+
+		this.updateCourseState = this.updateCourseState.bind(this);
+		this.saveCourse				 = this.saveCourse.bind(this);
+	}
+
+	updateCourseState(e) {
+		const field = e.target.name;
+		let course = this.state.course;
+		course[field] = e.target.value;
+		return this.setState({course: course});
+	}
+
+	saveCourse (e) {
+		e.preventDefault();
+		this.props.actions.saveCourse(this.state.course);
+		this.context.router.push('/courses');
 	}
 
 	render() {
@@ -19,6 +35,8 @@ class ManageCoursePage extends React.Component {
 			<div className='container top'>
 				<CourseForm
 					allAuthors={this.props.authors}
+					onChange={this.updateCourseState}
+					onSave={this.saveCourse}
 					course={this.state.course}
 					errors={this.state.errors}
 				/>
@@ -29,7 +47,13 @@ class ManageCoursePage extends React.Component {
 
 ManageCoursePage.propTypes = {
 	course: PropTypes.object.isRequired,
-	authors: PropTypes.array.isRequired
+	authors: PropTypes.array.isRequired,
+	actions: PropTypes.object.isRequired
+};
+
+// Pull in the React-Router context so the router is available on this.context.router
+ManageCoursePage.contextTypes = {
+	router: PropTypes.object
 };
 
 function mapStateToProps (state, ownProps) {
