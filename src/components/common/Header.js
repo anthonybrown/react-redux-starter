@@ -9,6 +9,8 @@ const Header = () => {
 				{' | '}
 				<Link to='/about'   activeClassName ='active'>About</Link>
 				{' | '}
+				<Link to='/course' activeClassName ='active'>Manage Courses</Link>
+				{' | '}
 				<Link to='/courses' activeClassName ='active'>Courses</Link>
 			</div>
 		</nav>
