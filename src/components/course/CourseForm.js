@@ -2,7 +2,7 @@ import React       from 'react';
 import TextInput   from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => {
+const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
 	return (
 		<div className='col-lg-6 col-md-8 col-sm-8 col-xs-10'>
 			<form>
@@ -34,8 +34,8 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
 					error={errors.length} />
 				<input
 					type='submit'
-					disabled={loading}
-					value={loading ? 'Saving...' : 'Save'}
+					disabled={saving}
+					value={saving ? 'Saving...' : 'Save'}
 					className='btn btn-primary'
 					onClick={onSave} />
 			</form>
@@ -44,12 +44,12 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
 };
 
 CourseForm.propTypes = {
-	course: React.PropTypes.object.isRequired,
-	allAuthors: React.PropTypes.array,
-	onSave: React.PropTypes.func.isRequired,
-	onChange: React.PropTypes.func.isRequired,
-	loading: React.PropTypes.bool,
-	errors: React.PropTypes.object
+	course     : React.PropTypes.object.isRequired,
+	allAuthors : React.PropTypes.array,
+	onSave     : React.PropTypes.func.isRequired,
+	onChange   : React.PropTypes.func.isRequired,
+	saving     : React.PropTypes.bool,
+	errors     : React.PropTypes.object
 };
 
 export default CourseForm;
