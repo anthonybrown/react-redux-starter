@@ -1,9 +1,9 @@
-import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import expect     from 'expect';
+import React      from 'react';
+import TestUtils  from 'react-addons-test-utils';
 import CourseForm from './CourseForm';
 
-function setup(saving) {
+function setup (saving) {
 	let props = {
 		course: {}, saving: saving, errors: {},
 		onSave: () => {},
